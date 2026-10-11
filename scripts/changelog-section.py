@@ -12,6 +12,7 @@ crates/adapters/all/src/lib.rs, so it is answered before the tag exists.
 Usage: scripts/changelog-section.py <version> [path/to/CHANGELOG.md]
 Exit 0 with the section on stdout / 1 when it is missing / 2 on usage.
 """
+from __future__ import annotations
 
 import re
 import sys

@@ -4,8 +4,11 @@ All notable changes to TokenMe are documented in this file. The format follows [
 
 ## [Unreleased]
 
+## [0.1.7] — 2026-10-11
+
 ### Added
 
+- **Oh My Pi (OMP) 适配器加入注册表** — 接入 Pi 方言会话流，自动索引 `~/.omp/agent/sessions/` 编码会话转录与 token/cache/reasoning 消耗指标，内置 256px 图标并扩展分类主题色；支持工具数增至 25 款。
 - **每日签到，三家风（Trae CN / Qoder / MiniMax Code）** — 一个注册表（`CHECKIN_TOOLS`）同时驱动三处：引擎的宿主退出豁免（高级 → 自动签到，开启后关着 IDE 也不错过当天——领取是对账号的 HTTPS 调用，不是读宿主状态）、面板的工具头按钮、底栏的控件渲染；按钮只把真实领取变成"已签到"徽标，排队中、未到点都保持按钮并把原因写明。**Qoder** 的读取按客户端实测定案：请求头带无横线的 `Cosy-ClientType` 才返回活动列表（横线版服务端答空列表，曾把"有活动"误读成"无活动"）；每日行 10:00 开门，开门前按钮置灰写明时刻；领取有客户端设备指纹门槛（第三方面部伪造应答 503 SAME_PERSON），TokenMe 把状态读对、把"需在 Qoder 内领取"说清楚——用户在 Qoder 里领完，下一次轮询面板即亮已签到。**MiniMax Code** 的协议取自厂商自己的开源客户端（`MiniMax-AI/minimax-code`）逐字实现：7 天面板的 `status 2` 即可领日、`claim` 幂等，请求带厂商公开定义为 wire 常量的归因签名头（授权仍是面板本就代为续期的 bearer token），账号 id 按客户端同款三级阶梯解析（运行时快照 → 指纹钉住的 CLI 身份文件 → 账号端点）。**Trae CN** 的积分包把已用份额真正送进仪表（原先恒 0%），签到包 id 带日期作用域——上周的积分包不再把"今日已签到"点亮；匿名积分包各持唯一 id，不再互相串状态。
 - **CodeBuddy CN 桌面版** 加入适配器注册表——会话流与配额照注册表契约一并接入。
 - **Windows 宠物皮肤可配置** — 桌面宠物从内置注册表选择模型与皮肤（`PetModel` 组件 + 皮肤注册表），配独立的一致性校验脚本进构建门禁。
